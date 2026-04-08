@@ -73,7 +73,7 @@ Once you have generated all the travel plans correspondig to respective day's di
         #set type 3day/5day/7day
         cd evaulation
         python /scratch/sequential_score.py --set_type 3day
-### 3. Responsibility:
+### 3. Responsiveness:
       cd evaluation
       python /scratch/corresponding csv file 
 
