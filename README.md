@@ -3,6 +3,10 @@
 This repository contains the official implementation of TripTide, a newly proposed benchmark for analyzing LLM behavior under disruption-aware travel planning settings.
 
 ***
+## 📢 Updates:
+🏆 TripTide Paper got accepted at **ACL (findings), 2026** !!
+
+***
 
 ## TripTide Overview
 TripTide is a benchmark for evaluating how Large Language Models (LLMs) handle disruption-aware travel planning. It assesses itinerary revisions under real-world disruptions using metrics like Preservation of Intent, Responsiveness, and Adaptability (semantic, spatial, and sequential), along with LLM-as-a-Judge and human evaluation.
