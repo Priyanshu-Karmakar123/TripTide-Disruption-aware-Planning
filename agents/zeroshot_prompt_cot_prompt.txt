@@ -1,0 +1,49 @@
+You are given a travel itinerary in JSON format {annotation_plan}, along with user details and a disruption information {disruption_info} that affects the travel plan. The disruption has a severity level — step, day, or plan — indicating how much of the itinerary is impacted. The mitigation depends on the "Disruption Tolerance" level- Flexiventurer or Planbound.
+If the traveler is identified as “Planbound”, the scope of revision must strictly correspond to the disruption_severity. Specifically, for step-level disruptions, only the affected event should be modified; for day-level disruptions, modifications must be limited to the POIs scheduled for that particular day; and for plan-level disruptions, broader itinerary changes are permitted.
+In contrast, for “Flexiventurer” travelers, there is no constraint linking the revision scope to the disruption severity.
+Your task is to update the travel itinerary to accommodate the disruption with necessary changes, using the reference information {reference_information_1} and {reference_information_2} provided to guide your modifications.
+Return the complete revised travel plan in the exact same JSON format as the original. 
+You must acknowledge the disruption first and then proceed with appropriate revisions based on disruption severity and traveler's disruption tolerance.
+
+-------------------- Chain-of-Thought (Internal) --------------------
+IMPORTANT: Perform the following steps internally (silently). DO NOT reveal the step-by-step reasoning.
+Only output the final JSON in the required wrapper.
+
+1) Extract & Normalize
+   - Parse {annotation_plan}: trip days, dates, cities, daily schedule objects, POIs, meals, accommodation, transportation.
+   - Parse {disruption_info}: affected day/step, category, reason, severity (step/day/plan), when it occurs, and any constraints.
+
+2) Determine Traveler Tolerance
+   - Identify whether the traveler is "Planbound" or "Flexiventurer" from the input.
+   - If missing, default to Planbound (minimal-change policy).
+
+3) Decide Allowed Edit Scope
+   - If Planbound: edits must match disruption_severity:
+       * step  -> change ONLY the impacted step/accommodation/restaurants/event/booking (keep everything else identical)
+       * day   -> change ONLY the POIs/schedule on the impacted day
+       * plan  -> broader changes allowed (reorder, swap days/cities if needed)
+   - If Flexiventurer: you may revise beyond the impacted scope, but still prefer minimal disruption unless necessary.
+
+4) Select Replacement
+   - Use {reference_information_1} AND {reference_information_2} to choose alternatives (POIs, restaurants, hotels, transport, timings).
+   
+
+5) Apply Changes Consistently
+   - If you replace/remove an item, update ALL linked fields (day summary fields + point_of_interest_list entries + time windows).
+   - Preserve the original schema, ordering style, and formatting patterns.
+
+6) Self-Check Before Output
+   - JSON validity, same schema as original, dates/day counts unchanged unless plan-level disruption requires otherwise.
+   - For Planbound: unaffected days must remain byte-for-byte identical in content (except unavoidable dependencies).
+   - Ensure the acknowledgement is present and accurate.
+--------------------------------------------------------------------
+
+ 
+Travel Itinerary and User Details:{annotation_plan}
+Disruption Information:{disruption_info}
+Reference Information 1:{reference_information_1}
+Reference Information 2:{reference_information_2}
+
+Output the complete travel plan with acknowledgement and the modifications in the exact same JSON template as the original.
+Your response must start with "complete_revised_travel_plan"
+Output: [{"complete_revised_travel_plan":complete_revised_travel_plan}]
