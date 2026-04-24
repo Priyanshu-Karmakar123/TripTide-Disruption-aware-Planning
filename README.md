@@ -14,7 +14,7 @@ TripTide is a benchmark for evaluating how Large Language Models (LLMs) handle d
 ***
 
 ## Dataset Availability
-TripTide comprises 11,058 disruption scenarios along with 1,000 GPT-4o-generated, disruption-aware annotated plans. To get access to our dataset and auxiliary databases, please send a request to AcadGrants@service.microsoft.com and cc to shreya[at]iitbbs.ac.in, abhikjana[at]iitbbs.ac.in, gmanish[at]microsoft.com and a24cs08008[at]iitbbs.ac.in .
+TripTide comprises 11,058 disruption scenarios along with 1,000 GPT-4o-generated, disruption-aware annotated plans. To get access to our dataset and auxiliary databases, please send a request  to shreya[at]iitbbs.ac.in, abhikjana[at]iitbbs.ac.in, gmanish[at]microsoft.com and a24cs08008[at]iitbbs.ac.in .
 
   ### Note
   The requesting third party can:
